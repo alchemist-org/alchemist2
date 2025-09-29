@@ -8,7 +8,7 @@ Entry point for your projects managed by git.
 
 Anywhere in terminal:
 
-- Open new terminal tab for choosed project and jump there
+- Open new terminal tab for choosed project and jump there (by pressing the number of project)
 - Show uncommitted changes
 - Show committing users info
 - Show every origin
