@@ -117,13 +117,13 @@ while true; do
   read -rp "Open repo # (or 'q' to quit): " choice
 
   if [[ "$choice" == "q" || "$choice" == "quit" ]]; then
-    echo "👋 Bye!"
+    echo "Bye!"
     break
   elif [[ "$choice" =~ ^[0-9]+$ ]] && (( choice < ${#repos[@]} )); then
     nohup $TERMINAL_CMD "${repos[$choice]}" >/dev/null 2>&1 &
     disown
   else
-    echo "❌ Invalid choice"
+    echo "Invalid choice"
     sleep 1
   fi
 done
