@@ -42,7 +42,7 @@ alias gitconfig='bash ~/projects/alchemist2/gitconfig.sh'
 # alchemist2 (aliases of aliases)
 alias gitusers='bash ~/projects/alchemist2/gitstatus.sh --users'
 alias giturls='bash ~/projects/alchemist2/gitstatus.sh --urls'
-alias gitlogs='bash ~/projects/alchemist2/gitstatus.sh --urls'
+alias gitlogs='bash ~/projects/alchemist2/gitstatus.sh --logs'
 ```
 
 And change in the script `gitstatus.sh[3]` because Elementary OS 7.1 terminal is default:
