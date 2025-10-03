@@ -3,7 +3,7 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Falchemist-org%2Falchemist2&label=Visitors&icon=suit-heart-fill&color=%23e35d6a)
 
-A lightweight terminal entry point / status provider for all your projects managed by git. Start the day with it when opening projects locally, and end the day with it when checking everything is pushed.
+A lightweight terminal entry point / status provider for your projects managed by git. Start the day with it when opening projects locally, and end the day with it when checking everything is pushed.
 
 ![Preview](preview.png)
 
