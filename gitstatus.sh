@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-TERMINAL_CMD="io.elementary.terminal --new-tab --working-directory"
-
 SHOW_URLS=false
 SHOW_USERS=false
 LOG_RANGE=""
+FILTER=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -19,11 +18,40 @@ while [[ $# -gt 0 ]]; do
         shift
       fi
       ;;
-    *) shift ;;
+    *) FILTER="$1"; shift ;;  # catch-all = project filter
   esac
 done
 
+# Collect all repos
+mapfile -t repos < <(find ~ -type d -name ".git" -exec dirname {} \; 2>/dev/null \
+                     | grep -E "/[^/]*projects[^/]*/" \
+                     | sort)
 
+# Apply filter if set
+if [[ -n "$FILTER" ]]; then
+  mapfile -t repos < <(printf "%s\n" "${repos[@]}" | grep -i "$FILTER")
+
+  if [[ ${#repos[@]} -eq 1 ]]; then
+    repo="${repos[0]}"
+    cd "$repo" || exit 1
+
+    activate_cmd="exec bash"
+
+    nohup io.elementary.terminal \
+      --working-directory "$repo" \
+      --commandline ""
+      >/dev/null 2>&1 &
+
+    disown
+    exit 0
+  else
+    # 0 or >1 → just quit
+    exit 0
+  fi
+fi
+
+
+# === Normal interactive mode (no filter) ===
 while true; do
   clear
   echo "Alchemist 2: git status"
@@ -120,7 +148,7 @@ while true; do
     echo "Bye!"
     break
   elif [[ "$choice" =~ ^[0-9]+$ ]] && (( choice < ${#repos[@]} )); then
-    nohup $TERMINAL_CMD "${repos[$choice]}" >/dev/null 2>&1 &
+    nohup $ALCHEMIST_TERMINAL_CMD "${repos[$choice]}" >/dev/null 2>&1 &
     disown
   else
     echo "Invalid choice"
