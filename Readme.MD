@@ -15,7 +15,7 @@ A lightweight terminal entry point / status provider for all projects managed by
 
 Anywhere in terminal for all projects:
 
-- Open new terminal tab for choosed one, jump there and activate penv, conda env
+- Open new terminal tab for choosed one, jump there and activate conda env
 - Show uncommitted changes
 - Show committing users info
 - Show every upload destination

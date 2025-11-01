@@ -35,21 +35,22 @@ if [[ -n "$FILTER" ]]; then
     repo="${repos[0]}"
     cd "$repo" || exit 1
 
-    activate_cmd="exec bash"
+    # Project name / Conda environment name (same as FILTER)
+    env_name="$FILTER"
 
+    # Launch a new terminal, activate the specified conda environment, and keep it open
     nohup io.elementary.terminal \
       --working-directory "$repo" \
-      --commandline ""
+      -e "conda activate \"$env_name\"; clear -x;" \
       >/dev/null 2>&1 &
 
     disown
     exit 0
   else
-    # 0 or >1 → just quit
+    # 0 or more than 1 → just exit
     exit 0
   fi
 fi
-
 
 # === Normal interactive mode (no filter) ===
 while true; do
